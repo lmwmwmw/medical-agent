@@ -1,7 +1,6 @@
 # utils.py
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chat_models import ChatOpenAI
-from config import *
+from langchain_openai import OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
 import os
 from py2neo import Graph
 from dotenv import load_dotenv
@@ -24,3 +23,7 @@ def get_llm_model():
         )
     }
     return model_map.get(os.getenv('LLM_MODEL'))
+
+if __name__ == '__main__':
+    response = get_llm_model().invoke("你是谁？")
+    print(response.content)
